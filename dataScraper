@@ -1,0 +1,78 @@
+# dataScraper.py
+# Swimulator
+#
+# Created by Alex Grimes on 07/15/2018
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+
+# set preferences for not opening download dialog
+profile = webdriver.FirefoxProfile()
+profile.set_preference('browser.download.manager.showWhenStarting', False)
+profile.set_preference('browser.download.dir', '/tmp')
+profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'application/vnd.ms-excel')
+
+# open college swimming page
+wd = webdriver.Firefox(profile)
+wd.get('https://www.collegeswimming.com/recruiting/rankings/2015/F/')
+
+# open new tab and load usa swimming swims database, set up query besides name
+wd.execute_script("window.open('');")
+wd.switch_to.window(wd.window_handles[1])
+wd.get('https://www.usaswimming.org/Home/times/individual-times-search')
+
+afterDate = wd.find_element_by_xpath('//*[@id="UsasTimeSearchIndividual_Index_Div_1StartDate"]')
+beforeDate = wd.find_element_by_xpath('//*[@id="UsasTimeSearchIndividual_Index_Div_1EndDate"]')
+afterDate.send_keys('01/01/2006')
+beforeDate.send_keys('12/31/2013')
+
+byEventSelectorArrow = wd.find_element_by_xpath('/html/body/div[1]/div/div/div[11]/div[1]/form/fieldset/div[6]/div/span/span/span[2]')
+byEventSelectorArrow.click
+
+# switch back to college swimming
+wd.switch_to.window(wd.window_handles[0])
+
+# optional for going to next page in college swimming
+nextButton = wd.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/ul/li[11]/a')
+# nextButton.click()
+
+# get row and column for table in college swimming
+col = wd.find_elements_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/thead/tr/th')
+row = wd.find_elements_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/tbody/tr/td[1]')
+
+for i in range(len(row)):
+	# get the name from the row
+	fullName = wd.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[2]').text
+	name = fullName.split()
+	firstName = name[0]
+	lastName = name[1]
+
+	# homeplace = wd.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[4]').text
+	# fullPlace = homeplace.split(',')
+	# town = fullPlace[0]
+	# state = fullPlace[1]
+	# print town
+	
+	# go to usa swimming and fill in the query stuff
+wd.switch_to.window(wd.window_handles[1])
+firstNameBox = wd.find_element_by_xpath('//*[@id="UsasTimeSearchIndividual_Index_Div_1FirstName"]')
+lastNameBox = wd.find_element_by_xpath('//*[@id="UsasTimeSearchIndividual_Index_Div_1LastName"]')
+firstNameBox.send_keys(firstName)
+lastNameBox.send_keys(lastName)
+
+# select only fastest times by event
+wd.execute_script('$(\'#UsasTimeSearchIndividual_Index_Div_1ddlTimesFilter\').data(\'kendoDropDownList\').value(\'FastestByEvent\')')
+
+# click find times button
+findTimesButton = wd.find_element_by_xpath('//*[@id="UsasTimeSearchIndividual_Index_Div_1-saveButton"]')
+findTimesButton.click()
+
+# BROKEN --- 
+# pull the best times from the results
+# timesRow = wd.find_elements_by_xpath('//*[@id="918b0f7f-a054-4751-8af8-ee9113cdf247"]')
+# timesCol = wd.find_elements_by_xpath('/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table/tbody/tr[1]/td')
+
+# click button to download times
+
+print "done"
