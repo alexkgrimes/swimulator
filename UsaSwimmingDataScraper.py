@@ -7,13 +7,14 @@
 #
 
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 # ----- Constants ----- #
-scyEvents = ['50 FR SCY', '100 FR SCY', '200 FR SCY', '500 FR SCY', '1000 FR SCY', '1650 FR SCY', '50 BK SCY', '100 BK SCY', '200 BK SCY', '100 BR SCY', '200 BR SCY', '50 FLY SCY', '100 FLY SCY', '200 FLY SCY', '100 IM SCY', '200 IM SCY', '400 IM SCY']
-lcmEvents = ['50 FR LCM', '100 FR LCM', '200 FR LCM', '400 FR LCM', '800 FR LCM', '1500 FR LCM', '50 BK LCM', '100 BK LCM', '200 BK LCM', '100 BR LCM', '200 BR LCM', '50 FLY LCM', '100 FLY LCM', '200 FLY LCM', '200 IM LCM', '400 IM LCM']
+scyEvents = ['50 FR SCY', '100 FR SCY', '200 FR SCY', '500 FR SCY', '1000 FR SCY', '1650 FR SCY', '50 BK SCY', '100 BK SCY', '200 BK SCY', '50 BR SCY', '100 BR SCY', '200 BR SCY', '50 FL SCY', '100 FL SCY', '200 FL SCY', '100 IM SCY', '200 IM SCY', '400 IM SCY']
+lcmEvents = ['50 FR LCM', '100 FR LCM', '200 FR LCM', '400 FR LCM', '800 FR LCM', '1500 FR LCM', '50 BK LCM', '100 BK LCM', '200 BK LCM', '50 BR SCY','100 BR LCM', '200 BR LCM', '50 FL LCM', '100 FL LCM', '200 FL LCM', '200 IM LCM', '400 IM LCM']
 allEvents = scyEvents + lcmEvents
 
 # ----- Paths ----- #
@@ -29,6 +30,38 @@ usaSwimTablePath = '/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table
 
 # ----- Scripts ----- #
 selectOnlyFastestScript = '$(\'#UsasTimeSearchIndividual_Index_Div_1ddlTimesFilter\').data(\'kendoDropDownList\').value(\'FastestByEvent\')'
+
+def getTimesForSwimmer():
+	timesTableSize = len(wd.find_elements_by_xpath(usaSwimTablePath))
+
+	eventIndex = 0
+	timesIndex = 0
+	while timesIndex < range(timesTableSize) and eventIndex < len(scyEvents):
+		# get eventName but only if you have gotten to times results
+		try:
+			eventName = wd.find_element_by_xpath('/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table/tbody/tr[' + str(timesIndex + 1) + ']/td[1]').text
+		except NoSuchElementException:
+			print("There is more than one person with this name.")
+			return
+
+		eventTime = wd.find_element_by_xpath('/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[3]/table/tbody/tr[' + str(timesIndex + 1) + ']/td[1]').text
+		if eventTime.endswith('r'):
+			eventTime = eventTime[:len(eventTime) - 1]
+
+		# handle repeat events for one event
+		if eventIndex != 0 and eventName == scyEvents[eventIndex - 1]:
+			timesIndex += 1
+			continue
+
+		# handle matching eventNames 
+		if eventName == allEvents[eventIndex]:
+			timesIndex += 1
+		# if there is a missing time
+		else:
+			eventTime = ''
+		print 'eventName: ', scyEvents[eventIndex], '\t', eventTime
+		eventIndex += 1
+	print
 
 # open college swimming page
 wd = webdriver.Firefox()
@@ -61,6 +94,7 @@ tableSize = len(wd.find_elements_by_xpath(collegeSwimTablePath))
 for i in range(tableSize):
 	# get the name from the row
 	fullName = wd.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[2]').text
+	print fullName
 	name = fullName.split()
 	firstName = name[0]
 	lastName = name[1]
@@ -72,27 +106,26 @@ for i in range(tableSize):
 	state = fullPlace[1]
 
 	# go to usa swimming and fill in the query stuff
-wd.switch_to.window(wd.window_handles[1])
-firstNameBox = wd.find_element_by_xpath(firstNameBoxPath)
-lastNameBox = wd.find_element_by_xpath(lastNameBoxPath)
-firstNameBox.send_keys(firstName)
-lastNameBox.send_keys(lastName)
+	wd.switch_to.window(wd.window_handles[1])
+	firstNameBox = wd.find_element_by_xpath(firstNameBoxPath)
+	lastNameBox = wd.find_element_by_xpath(lastNameBoxPath)
+	firstNameBox.clear()
+	lastNameBox.clear()
+	firstNameBox.send_keys(firstName)
+	lastNameBox.send_keys(lastName)
 
-# select only fastest times by event
-wd.execute_script(selectOnlyFastestScript)
+	# select only fastest times by event
+	wd.execute_script(selectOnlyFastestScript)
 
-# click find times button
-findTimesButton = wd.find_element_by_xpath(findTimesButtonPath)
-findTimesButton.click()
-time.sleep(4)
+	# click find times button
+	findTimesButton = wd.find_element_by_xpath(findTimesButtonPath)
+	findTimesButton.click()
+	time.sleep(2)
 
-timesTableSize = len(wd.find_elements_by_xpath(usaSwimTablePath))
+	getTimesForSwimmer()
 
-for i in range(timesTableSize):
-	eventName = wd.find_element_by_xpath('/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table/tbody/tr[' + str(i + 1) + ']/td[1]').text
-	time = wd.find_element_by_xpath('/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[1]').text
-
-	print eventName
-	print time
+	# go back to college swimming
+	wd.switch_to.window(wd.window_handles[0])
 
 print 'all done'
+
