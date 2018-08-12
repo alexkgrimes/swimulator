@@ -16546,3 +16546,98 @@ See the manual page for dbus-uuidgen to correct this issue.
 (firefox:10648): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
 1532297818671	Marionette	INFO	Listening on port 63924
 1532297818757	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532299248728	geckodriver	INFO	geckodriver 0.21.0
+1532299248735	geckodriver	INFO	Listening on 127.0.0.1:65062
+1532299249282	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SpjdGGjrmEec"
+process 10903: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:10903): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532299252363	Marionette	INFO	Listening on port 65067
+1532299252647	Marionette	WARN	TLS certificate errors will be ignored for this session
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1532299394413	geckodriver	INFO	geckodriver 0.21.0
+1532299394420	geckodriver	INFO	Listening on 127.0.0.1:65261
+1532299394967	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.Ca19GCLzLinN"
+process 11126: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:11126): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532299398038	Marionette	INFO	Listening on port 65266
+1532299398233	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532305428703	geckodriver	INFO	geckodriver 0.21.0
+1532305428711	geckodriver	INFO	Listening on 127.0.0.1:50732
+1532305429257	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.SHCuaFL4jkVv"
+process 11370: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:11370): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532305432327	Marionette	INFO	Listening on port 50737
+1532305432506	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532305624844	geckodriver	INFO	geckodriver 0.21.0
+1532305624852	geckodriver	INFO	Listening on 127.0.0.1:50878
+1532305625400	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.UaUr8uSmVc9l"
+process 11601: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:11601): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532305628356	Marionette	INFO	Listening on port 50884
+1532305628710	Marionette	WARN	TLS certificate errors will be ignored for this session
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1532305703306	geckodriver	INFO	geckodriver 0.21.0
+1532305703315	geckodriver	INFO	Listening on 127.0.0.1:51010
+1532305703831	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.4LYjh5nVTLj1"
+process 11822: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:11822): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532305707115	Marionette	INFO	Listening on port 51015
+1532305707205	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532305785687	geckodriver	INFO	geckodriver 0.21.0
+1532305785694	geckodriver	INFO	Listening on 127.0.0.1:51131
+1532305786244	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ZWqv15pKEBvL"
+process 12038: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:12038): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532305789241	Marionette	INFO	Listening on port 51136
+1532305789561	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532308226742	geckodriver	INFO	geckodriver 0.21.0
+1532308226750	geckodriver	INFO	Listening on 127.0.0.1:52570
+1532308227315	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.46J97RtQxVPF"
+process 12296: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:12296): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532308230486	Marionette	INFO	Listening on port 52575
+1532308230581	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Parent 12296, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-mWstsA/firefox-61.0.1+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1532308314880	geckodriver	INFO	geckodriver 0.21.0
+1532308314888	geckodriver	INFO	Listening on 127.0.0.1:52708
+1532308315439	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.ZaahHhrRQxr6"
+process 12559: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:12559): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532308318385	Marionette	INFO	Listening on port 52713
+1532308318737	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532309422999	geckodriver	INFO	geckodriver 0.21.0
+1532309423007	geckodriver	INFO	Listening on 127.0.0.1:53504
+1532309423563	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.KjXkCcvvcdbK"
+process 12829: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:12829): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532309426808	Marionette	INFO	Listening on port 53509
+1532309426862	Marionette	WARN	TLS certificate errors will be ignored for this session
+1532397268949	geckodriver	INFO	geckodriver 0.21.0
+1532397268958	geckodriver	INFO	Listening on 127.0.0.1:55927
+1532397268981	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.OQijVl6fZlyx"
+process 13062: D-Bus library appears to be incorrectly set up; failed to read machine uuid: UUID file '/etc/machine-id' should contain a hex string of length 32, not length 0, with no other text
+See the manual page for dbus-uuidgen to correct this issue.
+
+(firefox:13062): LIBDBUSMENU-GLIB-WARNING **: Unable to get session bus: Failed to execute child process "dbus-launch" (No such file or directory)
+1532397273976	Marionette	INFO	Listening on port 55932
+1532397274493	Marionette	WARN	TLS certificate errors will be ignored for this session
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping

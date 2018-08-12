@@ -32,6 +32,7 @@ usaSwimTablePath = '/html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table
 selectOnlyFastestScript = '$(\'#UsasTimeSearchIndividual_Index_Div_1ddlTimesFilter\').data(\'kendoDropDownList\').value(\'FastestByEvent\')'
 
 def getTimesForSwimmer():
+	time.sleep(2)
 	timesTableSize = len(wd.find_elements_by_xpath(usaSwimTablePath))
 
 	eventIndex = 0
@@ -59,7 +60,7 @@ def getTimesForSwimmer():
 		# if there is a missing time
 		else:
 			eventTime = ''
-		print 'eventName: ', scyEvents[eventIndex], '\t', eventTime
+		print eventTime, ', ',
 		eventIndex += 1
 	print
 
@@ -85,13 +86,13 @@ wd.switch_to.window(wd.window_handles[0])
 
 # optional for going to next page in college swimming
 nextButton = wd.find_element_by_xpath(nextButtonPath)
-# nextButton.click()
+nextButton.click()
 
 # get row and column for table in college swimming
 tableSize = len(wd.find_elements_by_xpath(collegeSwimTablePath))
 
 # loop through all your swimmers
-for i in range(tableSize):
+for i in range(10, tableSize):
 	# get the name from the row
 	fullName = wd.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[2]').text
 	print fullName
@@ -104,28 +105,29 @@ for i in range(tableSize):
 	fullPlace = homeplace.split(',')
 	town = fullPlace[0]
 	state = fullPlace[1]
+	print town
 
 	# go to usa swimming and fill in the query stuff
-	wd.switch_to.window(wd.window_handles[1])
-	firstNameBox = wd.find_element_by_xpath(firstNameBoxPath)
-	lastNameBox = wd.find_element_by_xpath(lastNameBoxPath)
-	firstNameBox.clear()
-	lastNameBox.clear()
-	firstNameBox.send_keys(firstName)
-	lastNameBox.send_keys(lastName)
+	# wd.switch_to.window(wd.window_handles[1])
+	# firstNameBox = wd.find_element_by_xpath(firstNameBoxPath)
+	# lastNameBox = wd.find_element_by_xpath(lastNameBoxPath)
+	# firstNameBox.clear()
+	# lastNameBox.clear()
+	# firstNameBox.send_keys(firstName)
+	# lastNameBox.send_keys(lastName)
 
-	# select only fastest times by event
-	wd.execute_script(selectOnlyFastestScript)
+	# # select only fastest times by event
+	# wd.execute_script(selectOnlyFastestScript)
 
-	# click find times button
-	findTimesButton = wd.find_element_by_xpath(findTimesButtonPath)
-	findTimesButton.click()
-	time.sleep(2)
+	# # click find times button
+	# findTimesButton = wd.find_element_by_xpath(findTimesButtonPath)
+	# findTimesButton.click()
+	# time.sleep(2)
 
-	getTimesForSwimmer()
+	# getTimesForSwimmer()
 
-	# go back to college swimming
-	wd.switch_to.window(wd.window_handles[0])
+	# # go back to college swimming
+	# wd.switch_to.window(wd.window_handles[0])
 
 print 'all done'
 
